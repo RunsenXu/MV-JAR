@@ -22,16 +22,18 @@
 Masked Voxel Jigsaw and Reconstruction (MV-JAR) addresses the uneven distribution of LiDAR points using a Reversed-Furthest-Voxel-Sampling strategy, and combines two techniques for modeling voxel (MVJ) and point (MVR) distributions. We also introduce a new data-efficient 3D object detection benchmark on the Waymo dataset for more accurate evaluation of pre-training methods. Experiments demonstrate that MV-JAR significantly improves 3D detection performance across various data scales. &#x1F4A5;
 
 ## News
+- [2023-03] We've released the original Waymo filenames of our benchmark sequences to support various codebases.  &#x1F4CA;
 - [2023-03] Our data-efficient benchmark on Waymo is released. &#x1F4CA;
 - [2023-03] Our paper is accepted by CVPR 2023. &#x1F389;
 
 ## Data-Efficient Benchmark on Waymo
 ### Download
 - To download our benchmark information files. You should first register in [Waymo Open Dataset](https://waymo.com/open/) and agree to the [Terms of Use](https://waymo.com/open/terms/). By downloding our benchmark, you agree to the [Terms of Use](https://waymo.com/open/terms/) of Waymo Open Dataset.
+- Download our benchmark with [[Google Drive]](https://drive.google.com/drive/folders/1AwDDBSGtTg_ZF2_P1J3wUj1hKrIjZ4co?usp=sharing) or [[Baidu Drive (code: phwq)]](https://pan.baidu.com/s/1jd2ilz6Y5ld8TKWRLbgQRQ?pwd=phwq). They take about 3.2GB in total.
 
-- Download our benchmark with [[Google Drive]](https://drive.google.com/file/d/1LFSKAZQqJABztOgDSUa_qhZVmSG9ds68/view?usp=sharing) or [[Baidu Drive (code: phwq)]](https://pan.baidu.com/s/1Cg0asPG_8ql2HrXKWlKGBA?pwd=phwq). The compressed file is about 3.2GB.
-
-- After downloading, unzip the file `data_efficient_benchmark.zip` and it should be:
+### Usage
+#### MMDetection3D Format
+- Download and unzip the file `data_efficient_benchmark.zip` and it should be:
   ```
     data_efficient_benchmark
     ├── md5sum.txt
@@ -60,25 +62,46 @@ Masked Voxel Jigsaw and Reconstruction (MV-JAR) addresses the uneven distributio
     ├── waymo_infos_train_r_0.5_1.pkl
     └── waymo_infos_train_r_0.5_2.pkl
   ```
-
 - To check the completeness of the files, you can run the following command:
   ```
   md5sum -c md5sum.txt
   ```
-  
-### Usage
-The information files provided in our benchmark are processed according to MMDetection3D's data format, containing only annotations and object point clouds. Before using our benchmark, you must first download the original Waymo dataset and follow MMDetection3D's instructions to convert the data format to MMDetection3D's format. For more details, please refer to MMDetection3D's [Prepare Waymo Dataset](https://mmdetection3d.readthedocs.io/en/v0.18.1/datasets/waymo_det.html) (v1.2).
+
+The information files provided in `data_efficient_benchmark/*` are processed according to [MMDetection3D](https://github.com/open-mmlab/mmdetection3d)'s data format, containing only annotations and object point clouds. Before using our benchmark, you must first download the original Waymo dataset and follow MMDetection3D's instructions to convert the data format to MMDetection3D's format. For more details, please refer to MMDetection3D's [Prepare Waymo Dataset](https://mmdetection3d.readthedocs.io/en/v0.18.1/datasets/waymo_det.html) (v1.2).
 
 To use our subsets, simply replace the `waymo_infos_train.pkl` and `waymo_dbinfos_train.pkl` with the corresponding files from our benchmark. For example, to use subset 0 with 5% of the scenes, replace them with `waymo_infos_train_r_0.05_0.pkl` and `waymo_dbinfos_train_old_r_0.05_0.pkl`, respectively.
 
 Here are some notes:
 - `waymo_infos_train_r_{data_ratio}_{subset_id}.pkl` files are the annotation files of our sampled subsets. `data_ratio` represents the ratio of the scenes, and `subset_id` is the id of the subset. For example, `waymo_infos_train_r_0.05_0.pkl` is the annotation file of the subset with 5% of the scenes, and its id is 0. For each data ratio, we provide 3 subsets to reduce experimental variance.
-
 - Each larger subset contains smaller subsets with the same subset ID. For example, `waymo_infos_train_r_0.5_0.pkl` contains the scenes in `waymo_infos_train_r_0.2_0.pkl`, which in turn contains the scenes in `waymo_infos_train_r_0.1_0.pkl`, and so on.
-
 - `waymo_dbinfos_train_old_r_{data_ratio}_{subset_id}.pkl` files contain the object point clouds for their corresponding scenes. For example, `waymo_dbinfos_train_old_r_0.05_0.pkl` contains the object point clouds of the scenes listed in `waymo_infos_train_r_0.05_0.pkl`. These `dbinfos` are mainly used for data augmentation.
-
 - &#x2757; Please note that MMDetection3D refactored its coordinate definition beginning from v1.0.0. Our `dbinfos` are based on the old coordinate definition which is why the file names contain `old`. If you use the new coordinate definition, you should generate new `dbinfos` for yourself. For more details, refer to [MMDetection3D's coordinate system refactoring](https://github.com/open-mmlab/mmdetection3d/blob/v1.0.0.dev0/docs/en/compatibility.md#coordinate-system-refactoring).
+
+#### Other Formats
+- Download and unzip the file `sequence_names.zip` and it shoulde be:
+  ```
+    sequence_names
+    ├── waymo_infos_train_r_0.05_0_sequence_names.txt
+    ├── waymo_infos_train_r_0.05_1_sequence_names.txt
+    ├── waymo_infos_train_r_0.05_2_sequence_names.txt
+    ├── waymo_infos_train_r_0.1_0_sequence_names.txt
+    ├── waymo_infos_train_r_0.1_1_sequence_names.txt
+    ├── waymo_infos_train_r_0.1_2_sequence_names.txt
+    ├── waymo_infos_train_r_0.2_0_sequence_names.txt
+    ├── waymo_infos_train_r_0.2_1_sequence_names.txt
+    ├── waymo_infos_train_r_0.2_2_sequence_names.txt
+    ├── waymo_infos_train_r_0.5_0_sequence_names.txt
+    ├── waymo_infos_train_r_0.5_1_sequence_names.txt
+    └── waymo_infos_train_r_0.5_2_sequence_names.txt
+  ```
+- Each file contains the original Waymo filenames of the sequences in each subsets. For example, `waymo_infos_train_r_0.05_0_sequence_names.txt` contains:
+  ```
+    segment-5576800480528461086_1000_000_1020_000_with_camera_labels.tfrecord
+    segment-11060291335850384275_3761_210_3781_210_with_camera_labels.tfrecord
+    ...
+  ```
+  
+You can convert the original Waymo data to any data format for different codebases, such as [OpenPCDet](https://github.com/open-mmlab/OpenPCDet), based on the provided filenames.
 
 ## MV-JAR
 We are cleaning the code and will release it soon. Stay tuned! &#x1F4E3;
