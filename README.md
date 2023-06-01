@@ -13,7 +13,7 @@
 </div>
 <a href='https://cvpr2023.thecvf.com/' target='_blank'>CVPR 2023</a>
 
-<a href='https://arxiv.org/abs/2303.13510' target='_blank'>[Paper]</a>
+<a href='https://arxiv.org/abs/2303.13510' target='_blank'>[Paper]</a>  <a href='https://www.youtube.com/watch?v=nlZd-twMOaE' target='_blank'>[Video]</a> <a href='https://drive.google.com/file/d/1wUCKEy-h57z9rBwWE7OypIUFV_S3kWs6/view?usp=sharing' target='_blank'>[Slides]</a> 
 
 </div>
 
