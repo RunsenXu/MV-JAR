@@ -109,11 +109,13 @@ We are cleaning the code and will release it soon. Stay tuned! &#x1F4E3;
 ## Citation
 If you find our work useful in your research, please cite:
 ```
-@inproceedings{xu2023mvjar,
-  title={MV-JAR: Masked Voxel Jigsaw and Reconstruction for LiDAR-Based Self-Supervised Pre-Training},
-  author={Xu, Runsen and Wang, Tai and Zhang, Wenwei and Chen, Runjian and Cao, Jinkun and Pang, Jiangmiao and Lin, Dahua},
-  booktitle={CVPR},
-  year={2023}
+@InProceedings{Xu_2023_CVPR,
+    author    = {Xu, Runsen and Wang, Tai and Zhang, Wenwei and Chen, Runjian and Cao, Jinkun and Pang, Jiangmiao and Lin, Dahua},
+    title     = {MV-JAR: Masked Voxel Jigsaw and Reconstruction for LiDAR-Based Self-Supervised Pre-Training},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {13445-13454}
 }
 ```
 
